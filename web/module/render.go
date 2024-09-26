@@ -24,7 +24,7 @@ func buildUrl(parts []string, module string) string {
     return result
 }
 
-func (handler *Handler) Render(ctx echo.Context, component templ.Component, url ...string) error {
+func (handler *ModuleHandler) Render(ctx echo.Context, component templ.Component, url ...string) error {
     if len(url) > 0 {
         ctx.Response().Header().Set("Hx-Push-Url", buildUrl(url, handler.ModuleUrl))
     }

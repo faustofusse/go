@@ -1,6 +1,6 @@
 package module
 
-type Handler struct {
+type ModuleHandler struct {
     ModuleUrl string
     Module Module
 }
