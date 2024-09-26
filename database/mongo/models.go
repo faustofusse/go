@@ -8,3 +8,7 @@ type Document struct {
     Updated *int64 `bson:"updated,omitempty" json:"updated,omitempty" form:"updated,omitempty"`
     Deleted *int64 `bson:"deleted,omitempty" json:"deleted,omitempty" form:"deleted,omitempty"`
 }
+
+func (document *Document) GetID() string {
+    return document.ID.Hex()
+}
