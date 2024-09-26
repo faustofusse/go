@@ -1,0 +1,70 @@
+package list
+
+import "strings"
+
+var iconStyles string = "inline-flex mr-4 mt-1"
+
+func sortType(field string, sort string) string {
+    if len(sort) == 0 || len(field) == 0 || !strings.Contains(sort, field) {
+        return ""
+    } else if sort[0] == '-' {
+        return "desc"
+    } else {
+        return "asc"
+    }
+}
+
+func styles(sortType string) string {
+    if sortType == "asc" {
+        return iconStyles
+    } else if sortType == "desc" {
+        return iconStyles + " rotate-180"
+    } else {
+        return iconStyles + " opacity-0"
+    }
+}
+
+script onClickHeader(field string, iconStyles string) {
+    const input = document.querySelector('[name="sort"]');
+    let newValue = '';
+    if (input.value.includes(field)) {
+        newValue = input.value[0] == '-' ? '' : '-' + field;
+    } else {
+        newValue = field;
+    }
+    input.value = newValue;
+    input.dispatchEvent(new Event('change'));
+    const headers = document.querySelectorAll('th > div > div');
+    headers.forEach((icon) => icon.classList = iconStyles + ' opacity-0');
+    const header = document.querySelector('th#header-' + field.replaceAll('.', '-'));
+    const icon = header.querySelector(':scope > div > div');
+    icon.classList = iconStyles;
+    if (!newValue.includes(field)) icon.classList += ' opacity-0';
+    else if (newValue[0] === '-')  icon.classList += ' rotate-180';
+}
+
+templ EmptyHeaderColumn() {
+    <th class="py-4 px-4 text-base bg-white font-normal w-[64px]"></th>
+}
+
+templ HeaderColumn(field string, label string, sort string) {
+    <th
+        if len(field) > 0 {
+            class="group py-4 pl-4 rounded-t-lg font-semibold select-none hover:bg-gray-100 hover:cursor-pointer"
+            id={ "header-" + strings.ReplaceAll(field, ".", "-") }
+            onclick={ onClickHeader(field, iconStyles) }
+        } else {
+            class="group py-4 pl-4 rounded-t-lg font-semibold select-none"
+        }
+    >
+        <div class="flex flex-row justify-between w-full">
+            { children... }
+            { label }
+            <div class={ styles(sortType(field, sort)) }>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="#000">
+                    <path d="M7.875 3.34688L7.875 14H6.125L6.125 3.34688L1.225 8.24688L0 7L7 0L14 7L12.775 8.24688L7.875 3.34688Z" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
+    </th>
+}

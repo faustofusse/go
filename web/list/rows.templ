@@ -1,0 +1,49 @@
+package list
+
+import (
+    "fmt"
+
+	"strings"
+)
+
+templ Column(classes ...string) {
+    <td class={"max-w-[20rem] py-3 px-4 overflow-hidden text-ellipsis text-nowrap " + strings.Join(classes, " ") }>
+        { children... }
+    </td>
+}
+
+templ Rows[T Row, D any](props *ListProps[T,D]) {
+    for i, record := range props.Records {
+        <tr class="hover:bg-gray-100 group border-b"
+            if !props.DisableRow {
+                style="cursor: pointer;"
+                hx-swap="outerHTML"
+                hx-target="div#content"
+                hx-get={ props.Search.BasePath + "/" + props.Records[i].GetID() }
+            }
+        >
+            if props.Row != nil {
+                @props.Row(props, record)
+            }
+            <td class="py-3 px-4"
+                if props.DisableRow {
+                    style="display: none;"
+                }
+                if int64(i) == props.Search.Limit - 3 {
+                    hx-get={ props.Search.BasePath + "?offset=" + fmt.Sprint(props.Search.Offset + props.Search.Limit) }
+                    hx-trigger="intersect once"
+                    hx-target="table tbody"
+                    hx-swap="beforeend"
+                    hx-include="[name='sort'],[name='q'],[name='filter']"
+                }
+            >
+                <div class="relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="">
+                        <path d="M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z" fill="currentColor"/>
+                    </svg>
+                    <div class="h-[2px] w-[0px] bg-[#222] absolute z-[1] left-0 -bottom-1 group-hover:w-[24px] transition-all duration-300"></div>
+                </div>
+            </td>
+        </tr>
+    }
+}
