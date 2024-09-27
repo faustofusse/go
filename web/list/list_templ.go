@@ -17,14 +17,14 @@ import (
 type ListProps[T Row, D any] struct {
 	Records    []T
 	Data       D
-	Search     *module.SearchOptions
+	Search     *SearchOptions
 	Row        func(*ListProps[T, D], T) templ.Component
 	Header     func(*ListProps[T, D]) templ.Component
 	Content    func(*ListProps[T, D]) templ.Component
 	DisableRow bool
 }
 
-func List[T data.Row, D any](ctx echo.Context, props *ListProps[T, D]) templ.Component {
+func List[T Row, D any](ctx echo.Context, props *ListProps[T, D]) templ.Component {
 	htmx := ctx.Request().Header.Get("Hx-Request") == "true"
 	target := ctx.Request().Header.Get("Hx-Target")
 	if !htmx || strings.Contains(target, "content") {
@@ -36,7 +36,7 @@ func List[T data.Row, D any](ctx echo.Context, props *ListProps[T, D]) templ.Com
 	}
 }
 
-func Table[T data.Row, D any](props *ListProps[T, D]) templ.Component {
+func Table[T Row, D any](props *ListProps[T, D]) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
