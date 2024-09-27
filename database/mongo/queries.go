@@ -24,9 +24,9 @@ func (db *DB) FindOne(ctx context.Context, collection string, target any, filter
     return nil
 }
 
-func (db *DB) FindAll(ctx context.Context, collection string, target any, filter bson.M) error {
+func (db *DB) FindAll(ctx context.Context, collection string, target any, filter bson.M, opts ...*options.FindOptions) error {
     filter["deleted"] = bson.M{ "$exists": false }
-    cursor, err := db.database.Collection(collection).Find(ctx, filter)
+    cursor, err := db.database.Collection(collection).Find(ctx, filter, opts...)
     if err != nil {
         return err
     }

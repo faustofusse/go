@@ -1,5 +1,7 @@
 package list
 
+import "go.mongodb.org/mongo-driver/mongo/options"
+
 type Row interface {
     GetID() string
 }
@@ -14,6 +16,23 @@ type SearchOptions struct {
     Ascending bool
     Limit int64
     Offset int64
+}
+
+func direction(ascending bool) int {
+    if ascending {
+        return 1
+    } else {
+        return -1
+    }
+}
+
+func (search *SearchOptions) Mongo() *options.FindOptions {
+    return options.Find().
+        SetLimit(search.Limit).
+        SetSkip(search.Offset).
+        SetSort(map[string]int{
+            search.SortField: direction(search.Ascending),
+        })
 }
 
 func (options *SearchOptions) Path() string {

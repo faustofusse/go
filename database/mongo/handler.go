@@ -28,8 +28,8 @@ func (handler *MongoHandler[T]) FindById(ctx echo.Context, value any) (*T, error
     return handler.FindOne(ctx, bson.M{ "_id": value })
 }
 
-func (handler *MongoHandler[T]) FindAll(ctx echo.Context, filter bson.M) (result []T, err error) {
-    err = handler.DB.FindAll(ctx.Request().Context(), handler.Collection, &result, filter)
+func (handler *MongoHandler[T]) FindAll(ctx echo.Context, filter bson.M, opts ...*options.FindOptions) (result []T, err error) {
+    err = handler.DB.FindAll(ctx.Request().Context(), handler.Collection, &result, filter, opts...)
     return result, err
 }
 
