@@ -9,6 +9,6 @@ type Document struct {
     Deleted *int64 `bson:"deleted,omitempty" json:"deleted,omitempty" form:"deleted,omitempty"`
 }
 
-func (document *Document) GetID() string {
+func (document Document) GetID() string {
     return document.ID.Hex()
 }
