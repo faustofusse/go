@@ -14,6 +14,11 @@ func HashString(password string) (string, error) {
     return string(hashedPassword), nil
 }
 
+func CompareHash(normal, hashed string) bool {
+    err := bcrypt.CompareHashAndPassword([]byte(hashed), []byte(normal))
+    return err == nil
+}
+
 func randomInt(min, max int) int {
     return rand.Intn(max - min) + min
 }
