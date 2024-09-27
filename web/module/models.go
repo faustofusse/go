@@ -4,13 +4,15 @@ import "github.com/a-h/templ"
 
 type Module struct {
     ID string
+    Url string
     Title string
     Icon func(string) templ.Component
 }
 
-func New(id, title string, icon func(string) templ.Component) Module {
+func New(id, url, title string, icon func(string) templ.Component) Module {
     return Module{
         ID: id,
+        Url: url,
         Title: title,
         Icon: icon,
     }
