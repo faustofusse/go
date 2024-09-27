@@ -6,6 +6,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 type MongoHandler[T any] struct {
@@ -13,9 +14,9 @@ type MongoHandler[T any] struct {
     Collection string
 }
 
-func (handler *MongoHandler[T]) FindOne(ctx echo.Context, filter bson.M) (*T, error) {
+func (handler *MongoHandler[T]) FindOne(ctx echo.Context, filter bson.M, opts ...*options.FindOneOptions) (*T, error) {
     result := new(T)
-    err := handler.DB.FindOne(ctx.Request().Context(), handler.Collection, result, filter)
+    err := handler.DB.FindOne(ctx.Request().Context(), handler.Collection, result, filter, opts...)
     return result, err
 }
 
