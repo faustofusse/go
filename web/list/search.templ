@@ -49,7 +49,6 @@ templ SearchBar(options *SearchOptions) {
                     <path d="M19.6 21L13.3 14.7C12.8 15.1 12.225 15.4167 11.575 15.65C10.925 15.8833 10.2333 16 9.5 16C7.68333 16 6.146 15.3707 4.888 14.112C3.63 12.8533 3.00067 11.316 3 9.5C3 7.68333 3.62933 6.146 4.888 4.888C6.14667 3.63 7.684 3.00067 9.5 3C11.3167 3 12.8543 3.62933 14.113 4.888C15.3717 6.14667 16.0007 7.684 16 9.5C16 10.2333 15.8833 10.925 15.65 11.575C15.4167 12.225 15.1 12.8 14.7 13.3L21 19.6L19.6 21ZM9.5 14C10.75 14 11.8127 13.5627 12.688 12.688C13.5633 11.8133 14.0007 10.7507 14 9.5C14 8.25 13.5627 7.18767 12.688 6.313C11.8133 5.43833 10.7507 5.00067 9.5 5C8.25 5 7.18767 5.43767 6.313 6.313C5.43833 7.18833 5.00067 8.25067 5 9.5C5 10.75 5.43767 11.8127 6.313 12.688C7.18833 13.5633 8.25067 14.0007 9.5 14Z" fill="#D1D5DB"/>
                 </svg>
             </div>
-                <!-- class="p-4 pl-12 bg-transparent w-full block focus:outline-none" -->
             <input
                 class="flex pl-8 p-2 border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full border-gray-200 text-gray-900"
                 placeholder="Buscar..."
@@ -57,59 +56,21 @@ templ SearchBar(options *SearchOptions) {
                 name="q"
                 value={ options.Query }
                 hx-target="div#content table tbody"
-                hx-get={ "/" + options.BasePath }
+                hx-get={ options.BasePath }
                 hx-trigger="input changed delay:500ms, search"
                 hx-include="[name='q'],[name='sort'],[name='filter']"
             />
             <input name="sort" value={ options.SortPath } style="display: none;"
-                hx-get={ "/" + options.BasePath }
+                hx-get={ options.BasePath }
                 hx-target="div#content table tbody"
                 hx-include="[name='q'],[name='sort'],[name='filter']"
             />
             <input name="filter" value={ options.Filter } style="display: none;"
-                hx-get={ "/" + options.BasePath }
+                hx-get={ options.BasePath }
                 hx-target="div#content table tbody"
                 hx-include="[name='q'],[name='sort'],[name='filter']"
             />
         </div>
-        <!--
-        if props.Dropdown != nil && props.Search != nil {
-            <div class="flex flex-row items-stretch">
-                @inputs.Dropdown(props.Dropdown, "", "right", false, false)
-            </div>
-        }
-        -->
         { children... }
     </div>
 }
-
-// templ SearchBar(options *SearchOptions) {
-//     <div class="px-4 py-4 flex justify-stretch gap-4">
-//         <div class="bg-[#eee] rounded-lg text-[#555] pointer-events-auto relative flex flex-grow">
-//             <div class="absolute left-0 inset-y-0 pl-4 flex items-center pointer-events-none">
-//                 @SearchIcon("20", "currentColor")
-//             </div>
-//             <input class="p-3 pl-11 bg-transparent w-full block focus:outline-none"
-//                 placeholder="Buscar..."
-//                 type="text"
-//                 name="q"
-//                 value={ options.Query }
-//                 hx-target="div#content table tbody"
-//                 hx-get={ options.BasePath }
-//                 hx-trigger="input changed delay:500ms, search"
-//                 hx-include="[name='q'],[name='sort'],[name='filter']"
-//             />
-//             <input name="sort" value={ options.SortPath } style="display: none;"
-//                 hx-get={ options.BasePath }
-//                 hx-target="div#content table tbody"
-//                 hx-include="[name='q'],[name='sort'],[name='filter']"
-//             />
-//             <input name="filter" value={ options.Filter } style="display: none;"
-//                 hx-get={ options.BasePath }
-//                 hx-target="div#content table tbody"
-//                 hx-include="[name='q'],[name='sort'],[name='filter']"
-//             />
-//         </div>
-//         { children... }
-//     </div>
-// }
