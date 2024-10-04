@@ -134,14 +134,14 @@ func SearchBar(options *SearchOptions) templ.Component {
 			templ_7745c5c3_Var5 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"py-4 flex justify-stretch gap-3\"><div class=\"bg-[#eee] rounded-lg text-[#555] pointer-events-auto relative flex flex-grow\"><div class=\"absolute left-0 inset-y-0 pl-2 flex items-center pointer-events-none\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"#D1D5DB\"><path d=\"M19.6 21L13.3 14.7C12.8 15.1 12.225 15.4167 11.575 15.65C10.925 15.8833 10.2333 16 9.5 16C7.68333 16 6.146 15.3707 4.888 14.112C3.63 12.8533 3.00067 11.316 3 9.5C3 7.68333 3.62933 6.146 4.888 4.888C6.14667 3.63 7.684 3.00067 9.5 3C11.3167 3 12.8543 3.62933 14.113 4.888C15.3717 6.14667 16.0007 7.684 16 9.5C16 10.2333 15.8833 10.925 15.65 11.575C15.4167 12.225 15.1 12.8 14.7 13.3L21 19.6L19.6 21ZM9.5 14C10.75 14 11.8127 13.5627 12.688 12.688C13.5633 11.8133 14.0007 10.7507 14 9.5C14 8.25 13.5627 7.18767 12.688 6.313C11.8133 5.43833 10.7507 5.00067 9.5 5C8.25 5 7.18767 5.43767 6.313 6.313C5.43833 7.18833 5.00067 8.25067 5 9.5C5 10.75 5.43767 11.8127 6.313 12.688C7.18833 13.5633 8.25067 14.0007 9.5 14Z\" fill=\"#D1D5DB\"></path></svg></div><!-- class=\"p-4 pl-12 bg-transparent w-full block focus:outline-none\" --><input class=\"flex pl-8 p-2 border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full border-gray-200 text-gray-900\" placeholder=\"Buscar...\" type=\"text\" name=\"q\" value=\"")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"py-4 flex justify-stretch gap-3\"><div class=\"bg-[#eee] rounded-lg text-[#555] pointer-events-auto relative flex flex-grow\"><div class=\"absolute left-0 inset-y-0 pl-2 flex items-center pointer-events-none\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"#D1D5DB\"><path d=\"M19.6 21L13.3 14.7C12.8 15.1 12.225 15.4167 11.575 15.65C10.925 15.8833 10.2333 16 9.5 16C7.68333 16 6.146 15.3707 4.888 14.112C3.63 12.8533 3.00067 11.316 3 9.5C3 7.68333 3.62933 6.146 4.888 4.888C6.14667 3.63 7.684 3.00067 9.5 3C11.3167 3 12.8543 3.62933 14.113 4.888C15.3717 6.14667 16.0007 7.684 16 9.5C16 10.2333 15.8833 10.925 15.65 11.575C15.4167 12.225 15.1 12.8 14.7 13.3L21 19.6L19.6 21ZM9.5 14C10.75 14 11.8127 13.5627 12.688 12.688C13.5633 11.8133 14.0007 10.7507 14 9.5C14 8.25 13.5627 7.18767 12.688 6.313C11.8133 5.43833 10.7507 5.00067 9.5 5C8.25 5 7.18767 5.43767 6.313 6.313C5.43833 7.18833 5.00067 8.25067 5 9.5C5 10.75 5.43767 11.8127 6.313 12.688C7.18833 13.5633 8.25067 14.0007 9.5 14Z\" fill=\"#D1D5DB\"></path></svg></div><input class=\"flex pl-8 p-2 border text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full border-gray-200 text-gray-900\" placeholder=\"Buscar...\" type=\"text\" name=\"q\" value=\"")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var6 string
 		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(options.Query)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/search.templ`, Line: 58, Col: 37}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/search.templ`, Line: 57, Col: 37}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
@@ -152,9 +152,9 @@ func SearchBar(options *SearchOptions) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var7 string
-		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs("/" + options.BasePath)
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(options.BasePath)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/search.templ`, Line: 60, Col: 47}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/search.templ`, Line: 59, Col: 41}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 		if templ_7745c5c3_Err != nil {
@@ -167,7 +167,7 @@ func SearchBar(options *SearchOptions) templ.Component {
 		var templ_7745c5c3_Var8 string
 		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(options.SortPath)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/search.templ`, Line: 64, Col: 55}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/search.templ`, Line: 63, Col: 55}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
@@ -178,9 +178,9 @@ func SearchBar(options *SearchOptions) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var9 string
-		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs("/" + options.BasePath)
+		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(options.BasePath)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/search.templ`, Line: 65, Col: 47}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/search.templ`, Line: 64, Col: 41}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 		if templ_7745c5c3_Err != nil {
@@ -193,7 +193,7 @@ func SearchBar(options *SearchOptions) templ.Component {
 		var templ_7745c5c3_Var10 string
 		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(options.Filter)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/search.templ`, Line: 69, Col: 55}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/search.templ`, Line: 68, Col: 55}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 		if templ_7745c5c3_Err != nil {
@@ -204,15 +204,15 @@ func SearchBar(options *SearchOptions) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var11 string
-		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs("/" + options.BasePath)
+		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(options.BasePath)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/search.templ`, Line: 70, Col: 47}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/search.templ`, Line: 69, Col: 41}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-target=\"div#content table tbody\" hx-include=\"[name=&#39;q&#39;],[name=&#39;sort&#39;],[name=&#39;filter&#39;]\"></div><!--\n        if props.Dropdown != nil && props.Search != nil {\n            <div class=\"flex flex-row items-stretch\">\n                @inputs.Dropdown(props.Dropdown, \"\", \"right\", false, false)\n            </div>\n        }\n        -->")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-target=\"div#content table tbody\" hx-include=\"[name=&#39;q&#39;],[name=&#39;sort&#39;],[name=&#39;filter&#39;]\"></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -228,34 +228,4 @@ func SearchBar(options *SearchOptions) templ.Component {
 	})
 }
 
-//	templ SearchBar(options *SearchOptions) {
-//	    <div class="px-4 py-4 flex justify-stretch gap-4">
-//	        <div class="bg-[#eee] rounded-lg text-[#555] pointer-events-auto relative flex flex-grow">
-//	            <div class="absolute left-0 inset-y-0 pl-4 flex items-center pointer-events-none">
-//	                @SearchIcon("20", "currentColor")
-//	            </div>
-//	            <input class="p-3 pl-11 bg-transparent w-full block focus:outline-none"
-//	                placeholder="Buscar..."
-//	                type="text"
-//	                name="q"
-//	                value={ options.Query }
-//	                hx-target="div#content table tbody"
-//	                hx-get={ options.BasePath }
-//	                hx-trigger="input changed delay:500ms, search"
-//	                hx-include="[name='q'],[name='sort'],[name='filter']"
-//	            />
-//	            <input name="sort" value={ options.SortPath } style="display: none;"
-//	                hx-get={ options.BasePath }
-//	                hx-target="div#content table tbody"
-//	                hx-include="[name='q'],[name='sort'],[name='filter']"
-//	            />
-//	            <input name="filter" value={ options.Filter } style="display: none;"
-//	                hx-get={ options.BasePath }
-//	                hx-target="div#content table tbody"
-//	                hx-include="[name='q'],[name='sort'],[name='filter']"
-//	            />
-//	        </div>
-//	        { children... }
-//	    </div>
-//	}
 var _ = templruntime.GeneratedTemplate
