@@ -14,7 +14,7 @@ templ Column(classes ...string) {
 
 templ Rows[T Row, D any](props *ListProps[T,D]) {
     for i, record := range props.Records {
-        <tr class="hover:bg-gray-100 group border-b"
+        <tr class="hover:bg-gray-50 group border-b"
             if !props.DisableRow {
                 style="cursor: pointer;"
                 hx-swap="outerHTML"
