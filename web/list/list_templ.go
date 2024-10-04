@@ -57,7 +57,7 @@ func Table[T Row, D any](props *ListProps[T, D]) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"w-full h-full py-4 px-4 pt-0 justify-center overflow-auto\"><table class=\"w-full rounded-lg bg-white text-sm font-normal text-left\"><thead class=\"rounded-lg sticky top-0 bg-gray-50\"><tr id=\"header\" class=\"bg-white shadow-[0_1px_0_rgba(0,0,0,0.1)]\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"w-full h-full py-4 pt-0 justify-center overflow-auto\"><table class=\"w-full rounded-lg bg-white text-sm font-normal text-left\"><thead class=\"rounded-lg sticky top-0 bg-gray-50\"><tr id=\"header\" class=\"bg-white shadow-[0_1px_0_rgba(0,0,0,0.1)]\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

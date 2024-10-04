@@ -91,7 +91,7 @@ func Rows[T Row, D any](props *ListProps[T, D]) templ.Component {
 		}
 		ctx = templ.ClearChildren(ctx)
 		for i, record := range props.Records {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<tr class=\"hover:bg-gray-100 group border-b\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<tr class=\"hover:bg-gray-50 group border-b\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
