@@ -67,7 +67,7 @@ func Table[T Row, D any](props *ListProps[T, D]) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<th class=\"hidden\"></th>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<th></th>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
