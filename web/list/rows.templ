@@ -25,15 +25,16 @@ templ Rows[T Row, D any](props *ListProps[T,D]) {
             if props.Row != nil {
                 @props.Row(props, record)
             }
-            if int64(i) == props.Search.Limit - 3 {
-                <div class="hidden"
-                    hx-get={ props.Search.BasePath + "?offset=" + fmt.Sprint(props.Search.Offset + props.Search.Limit) }
-                    hx-trigger="intersect once"
-                    hx-target="table tbody"
-                    hx-swap="beforeend"
-                    hx-include="[name='sort'],[name='q'],[name='filter']"
-                ></div>
-            }
+            <td class="hidden">
+                if int64(i) == props.Search.Limit - 3 {
+                    <div hx-get={ props.Search.BasePath + "?offset=" + fmt.Sprint(props.Search.Offset + props.Search.Limit) }
+                        hx-trigger="intersect once"
+                        hx-target="table tbody"
+                        hx-swap="beforeend"
+                        hx-include="[name='sort'],[name='q'],[name='filter']"
+                    ></div>
+                }
+            </td>
         </tr>
     }
 }

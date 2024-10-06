@@ -36,6 +36,7 @@ templ Table[T Row, D any](props *ListProps[T,D]) {
                     if props.Header != nil {
                         @props.Header(props)
                     }
+                    <th class="hidden"></th>
                     if !props.DisableRow {
                         @EmptyHeaderColumn()
                     }

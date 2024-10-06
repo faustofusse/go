@@ -67,6 +67,10 @@ func Table[T Row, D any](props *ListProps[T, D]) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<th class=\"hidden\"></th>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
 		if !props.DisableRow {
 			templ_7745c5c3_Err = EmptyHeaderColumn().Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
