@@ -20,7 +20,9 @@ func List[T Row, D any](ctx echo.Context, props *ListProps[T,D]) templ.Component
     htmx := ctx.Request().Header.Get("Hx-Request") == "true"
     target := ctx.Request().Header.Get("Hx-Target")
     if !htmx || strings.Contains(target, "content") {
-        ctx.Response().Header().Set("Hx-Push-Url", props.Search.BasePath)
+        if len(strings.Split(props.Search.BasePath, "/")) <= 2 {
+            ctx.Response().Header().Set("Hx-Push-Url", props.Search.BasePath)
+        }
         return props.Content(props)
     } else {
         ctx.Response().Header().Set("HX-Replace-Url", props.Search.Path())
