@@ -124,36 +124,26 @@ func Rows[T Row, D any](props *ListProps[T, D]) templ.Component {
 					return templ_7745c5c3_Err
 				}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<td class=\"py-3 px-4\"")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			if props.DisableRow {
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" style=\"display: none;\"")
-				if templ_7745c5c3_Err != nil {
-					return templ_7745c5c3_Err
-				}
-			}
 			if int64(i) == props.Search.Limit-3 {
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(" hx-get=\"")
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"hidden\" hx-get=\"")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 				var templ_7745c5c3_Var6 string
 				templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(props.Search.BasePath + "?offset=" + fmt.Sprint(props.Search.Offset+props.Search.Limit))
 				if templ_7745c5c3_Err != nil {
-					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/rows.templ`, Line: 33, Col: 118}
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `web/list/rows.templ`, Line: 30, Col: 118}
 				}
 				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-trigger=\"intersect once\" hx-target=\"table tbody\" hx-swap=\"beforeend\" hx-include=\"[name=&#39;sort&#39;],[name=&#39;q&#39;],[name=&#39;filter&#39;]\"")
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" hx-trigger=\"intersect once\" hx-target=\"table tbody\" hx-swap=\"beforeend\" hx-include=\"[name=&#39;sort&#39;],[name=&#39;q&#39;],[name=&#39;filter&#39;]\"></div>")
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("><div class=\"relative\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" class=\"\"><path d=\"M16.175 13H4V11H16.175L10.575 5.4L12 4L20 12L12 20L10.575 18.6L16.175 13Z\" fill=\"currentColor\"></path></svg><div class=\"h-[2px] w-[0px] bg-[#222] absolute z-[1] left-0 -bottom-1 group-hover:w-[24px] transition-all duration-300\"></div></div></td></tr>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</tr>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
