@@ -21,6 +21,6 @@ func Initialize(logger *slog.Logger) *FCM {
         logger.Error("creating app", "service", "firebase", "error", err.Error())
         return nil
     }
-    logger.Info("initialized", "service", "firebase")
+    logger.Info("initialized", "service", "fcm")
     return &FCM{ client: app, logger: logger }
 }
