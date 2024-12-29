@@ -16,7 +16,8 @@ type FCM struct {
 
 func Initialize(logger *slog.Logger) *FCM {
     key := os.Getenv("GOOGLE_FIREBASE_KEY")
-    app, err := firebase.NewApp(context.Background(), nil, option.WithAPIKey(key))
+    config := firebase.Config{ ProjectID: os.Getenv("GOOGLE_FIREBASE_PROJECT_ID") }
+    app, err := firebase.NewApp(context.Background(), &config, option.WithAPIKey(key))
     if err != nil {
         logger.Error("creating app", "service", "firebase", "error", err.Error())
         return nil
