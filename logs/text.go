@@ -46,11 +46,11 @@ func (h TextHandler) WithGroup(name string) slog.Handler {
 
 func levelString(level slog.Level) string {
     switch level {
-        case slog.LevelDebug: return "debug"
-        case slog.LevelInfo: return "info "
-        case slog.LevelWarn: return "warn "
-        case slog.LevelError: return "error"
-        default: return "???"
+        case slog.LevelDebug: return "D"
+        case slog.LevelInfo: return "I"
+        case slog.LevelWarn: return "W"
+        case slog.LevelError: return "E"
+        default: return "?"
     }
 }
 
@@ -76,6 +76,18 @@ func (h TextHandler) Handle(ctx context.Context, r slog.Record) error {
     service := ""
     attrs := ""
 
+    // http := false
+    // r.Attrs(func(a slog.Attr) bool {
+    //     if a.Key == "service" {
+    //         if a.Value.String() == "http" {
+    //             http = true
+    //         }
+    //         return false
+    //     } else {
+    //         return true
+    //     }
+    // })
+
     r.Attrs(func(a slog.Attr) bool {
         if a.Key == "service" {
             service = a.Value.String()
@@ -90,15 +102,14 @@ func (h TextHandler) Handle(ctx context.Context, r slog.Record) error {
         " ",
         colorize(levelColor(r.Level), levelString(r.Level)),
         " ",
+        colorize(levelColor(r.Level), " │ "),
+        " ",
     )
 
     if service != "" {
-        fmt.Printf("%-15s", colorize(lightGray, service))
+        // fmt.Printf("%-15s", colorize(lightGray, service))
+        fmt.Printf("%s: ", colorize(lightGray, service))
     }
-
-    fmt.Print(
-        colorize(levelColor(r.Level), " │ "),
-    )
 
     fmt.Print(colorize(white, r.Message), attrs, "\n")
 
