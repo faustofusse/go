@@ -74,7 +74,7 @@ func rightPad(str string, width int) string {
 
 func (h TextHandler) Handle(ctx context.Context, r slog.Record) error {
     fmt.Print(
-        colorize(lightGray, r.Time.Format(timeFormat)),
+        colorize(darkGray, r.Time.Format(timeFormat)),
         " ",
         colorize(levelColor(r.Level), levelString(r.Level)),
         " ",
@@ -92,21 +92,23 @@ func (h TextHandler) Handle(ctx context.Context, r slog.Record) error {
     service := attrs["service"]
 
     if service == "http" {
+        if len(attrs["method"]) > 4 {
+            attrs["method"] = attrs["method"][:3]
+        }
         fmt.Print(
-            colorize(white, attrs["method"]),
+            colorize(white, fmt.Sprintf("%-4s", attrs["method"])),
             " ",
             colorize(white, attrs["status"]),
             " ",
             colorize(white, attrs["path"]),
             " ",
-            colorize(white, attrs["latency_human"]),
+            colorize(darkGray, attrs["latency_human"]),
         )
     } else {
-        fmt.Print(
-            colorize(lightGray, service),
-            ": ",
-            colorize(white, r.Message),
-        )
+        if service != "" {
+            fmt.Print(colorize(lightGray, service), ": ")
+        }
+        fmt.Print(colorize(white, r.Message))
         for key, value := range attrs {
             if key != "service" {
                 fmt.Print(
