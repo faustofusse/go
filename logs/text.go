@@ -102,7 +102,7 @@ func (h TextHandler) Handle(ctx context.Context, r slog.Record) error {
         " ",
         colorize(levelColor(r.Level), levelString(r.Level)),
         " ",
-        colorize(levelColor(r.Level), " │ "),
+        colorize(levelColor(r.Level), "│"),
         " ",
     )
 
