@@ -72,21 +72,6 @@ func rightPad(str string, width int) string {
     return padded
 }
 
-func isHttp(r slog.Record) bool {
-    http := false
-    r.Attrs(func(a slog.Attr) bool {
-        if a.Key == "service" {
-            if a.Value.String() == "http" {
-                http = true
-            }
-            return false
-        } else {
-            return true
-        }
-    })
-    return http
-}
-
 func (h TextHandler) Handle(ctx context.Context, r slog.Record) error {
     fmt.Print(
         colorize(lightGray, r.Time.Format(timeFormat)),
@@ -98,12 +83,13 @@ func (h TextHandler) Handle(ctx context.Context, r slog.Record) error {
     )
 
     attrs := map[string]string{}
-    service := attrs["service"]
 
     r.Attrs(func(a slog.Attr) bool {
         attrs[a.Key] = a.Value.String()
         return true
     })
+
+    service := attrs["service"]
 
     if service == "http" {
         fmt.Print(
