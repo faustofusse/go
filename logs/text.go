@@ -72,31 +72,22 @@ func rightPad(str string, width int) string {
     return padded
 }
 
-func (h TextHandler) Handle(ctx context.Context, r slog.Record) error {
-    service := ""
-    attrs := ""
-
-    // http := false
-    // r.Attrs(func(a slog.Attr) bool {
-    //     if a.Key == "service" {
-    //         if a.Value.String() == "http" {
-    //             http = true
-    //         }
-    //         return false
-    //     } else {
-    //         return true
-    //     }
-    // })
-
+func isHttp(r slog.Record) bool {
+    http := false
     r.Attrs(func(a slog.Attr) bool {
         if a.Key == "service" {
-            service = a.Value.String()
+            if a.Value.String() == "http" {
+                http = true
+            }
+            return false
         } else {
-            attrs += " " + colorize(lightGray, a.Key) + colorize(lightGray, "=") + colorize(white, a.Value.String())
+            return true
         }
-        return true
     })
+    return http
+}
 
+func (h TextHandler) Handle(ctx context.Context, r slog.Record) error {
     fmt.Print(
         colorize(lightGray, r.Time.Format(timeFormat)),
         " ",
@@ -106,12 +97,43 @@ func (h TextHandler) Handle(ctx context.Context, r slog.Record) error {
         " ",
     )
 
-    if service != "" {
-        // fmt.Printf("%-15s", colorize(lightGray, service))
-        fmt.Printf("%s: ", colorize(lightGray, service))
+    attrs := map[string]string{}
+    service := attrs["service"]
+
+    r.Attrs(func(a slog.Attr) bool {
+        attrs[a.Key] = a.Value.String()
+        return true
+    })
+
+    if service == "http" {
+        fmt.Print(
+            colorize(white, attrs["method"]),
+            " ",
+            colorize(white, attrs["status"]),
+            " ",
+            colorize(white, attrs["path"]),
+            " ",
+            colorize(white, attrs["latency_human"]),
+        )
+    } else {
+        fmt.Print(
+            colorize(lightGray, service),
+            ": ",
+            colorize(white, r.Message),
+        )
+        for key, value := range attrs {
+            if key != "service" {
+                fmt.Print(
+                    " ",
+                    colorize(lightGray, key),
+                    colorize(lightGray, "="),
+                    colorize(white, value),
+                )
+            }
+        }
     }
 
-    fmt.Print(colorize(white, r.Message), attrs, "\n")
+    fmt.Print("\n")
 
     return nil
 }
