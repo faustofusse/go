@@ -72,6 +72,22 @@ func rightPad(str string, width int) string {
     return padded
 }
 
+func colorizeStatus(status string) string {
+    if len(status) == 0 {
+        return ""
+    }
+    if status[0] == '5' {
+        return colorize(red, status)
+    }
+    if status[0] == '4' || status[0] == '3' {
+        return colorize(yellow, status)
+    }
+    if status[0] == '2' {
+        return colorize(green, status)
+    }
+    return colorize(white, status)
+}
+
 func (h TextHandler) Handle(ctx context.Context, r slog.Record) error {
     fmt.Print(
         colorize(darkGray, r.Time.Format(timeFormat)),
@@ -92,13 +108,10 @@ func (h TextHandler) Handle(ctx context.Context, r slog.Record) error {
     service := attrs["service"]
 
     if service == "http" {
-        if len(attrs["method"]) > 4 {
-            attrs["method"] = attrs["method"][:3]
-        }
         fmt.Print(
-            colorize(white, fmt.Sprintf("%-4s", attrs["method"])),
+            colorizeStatus(attrs["status"]),
             " ",
-            colorize(white, attrs["status"]),
+            colorize(white, attrs["method"]),
             " ",
             colorize(white, attrs["path"]),
             " ",
